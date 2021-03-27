@@ -117,3 +117,6 @@ touch output/web/exploit.html
 printf "<noscript>Go to browser settings and check \"Enable JavaScript\", then reload this page.</noscript><script src='payload.js'></script><script>" >> output/web/exploit.html
 cat build/exploit.js >> output/web/exploit.html
 printf "</script>" >> output/web/exploit.html
+
+echo "5) Prebuilt plugins and pkg"
+cp -a pkg output/web
