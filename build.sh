@@ -34,7 +34,7 @@ OBJCOPY=arm-vita-eabi-objcopy
 LDFLAGS="-T payload/linker.x -nodefaultlibs -nostdlib -pie"
 DEFINES="-DRELEASE=$RELEASE"
 PREPROCESS="$CC -E -P -C -w -x c $DEFINES"
-CFLAGS="-fPIE -fno-zero-initialized-in-bss -std=c99 -mcpu=cortex-a9 -Os -mthumb $DEFINES"
+CFLAGS="-fPIE -fno-zero-initialized-in-bss -fno-builtin -std=c99 -mcpu=cortex-a9 -Os -mthumb $DEFINES"
 
 # generate version stuffs
 BUILD_VERSION=$(git describe --dirty --always --tags)

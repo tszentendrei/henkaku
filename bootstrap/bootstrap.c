@@ -58,6 +58,7 @@ const char taihen_config_header[] =
 const char taihen_config[] = 
 	"*KERNEL\n"
 	"# henkaku.skprx is hard-coded to load and is not listed here\n"
+	"ur0:tai/gamesd.skprx\n"
 	"*main\n"
 	"# main is a special titleid for SceShell\n"
 	HENKAKU_SUPRX_FILE "\n"
@@ -346,6 +347,9 @@ int install_pkg(const char *pkg_url_prefix) {
 	sceClibSnprintf(file_name, sizeof(file_name), "%s/sce_sys/livearea/contents", pkg_path);
 	mkdirs(file_name);
 
+	// this is needed for installation to succeed on an empty sd card, installation will still fail on the first attempt
+	mkdirs("ux0:data");
+
 	GET_FILE("eboot.bin");
 	GET_FILE("sce_sys/param.sfo");
 	GET_FILE("sce_sys/icon0.png");
@@ -437,6 +441,7 @@ int install_taihen(const char *pkg_url_prefix) {
 	GET_FILE("taihen.skprx");
 	GET_FILE("henkaku.skprx");
 	GET_FILE("henkaku.suprx");
+	GET_FILE("gamesd.skprx");
 
 	if (!exists(TAIHEN_CONFIG_FILE)) {
 		mkdirs("ux0:tai");
